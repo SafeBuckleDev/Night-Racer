@@ -16,11 +16,16 @@ public class controller : MonoBehaviour
     private InputManager Im;
     public WheelCollider[] wheels = new WheelCollider[4];
     public GameObject[] wheelMesh = new GameObject[4];
-    private Rigidbody rb;
+    private GameObject centerOfMass;
+    public Rigidbody rb;
     public float KPH;
     public int motortorque = 100;
     public float radius = 6;
+    public float addDownForceValue= 50;
+    public float Brakepower;
     public float steeringMax = 4;
+
+    public float[] slip = new float[4];
     void Start()
     {
         getObjects();
@@ -30,9 +35,12 @@ public class controller : MonoBehaviour
 
     private void FixedUpdate()
     {
+        addDownForce();
         animateWheels();
         moveVehicle();
         steerVehicle();
+        getFriction();
+
     }
 
     private void moveVehicle()
@@ -63,6 +71,15 @@ public class controller : MonoBehaviour
         }
 
         KPH = rb.velocity.magnitude * 3.6f;
+
+        if (Im.handBrake)
+        {
+            wheels[3].brakeTorque = wheels[2].brakeTorque = Brakepower;
+        }
+        else
+        {
+            wheels[3].brakeTorque = wheels[2].brakeTorque = 0;
+        }
     }
     private void steerVehicle()
     {
@@ -105,10 +122,29 @@ public class controller : MonoBehaviour
         }
              
     }
+    
     private void getObjects()
     {
         Im = GetComponent<InputManager>();
         rb = GetComponent<Rigidbody>();
+        centerOfMass = GameObject.Find("centerMass");
+        rb.centerOfMass = centerOfMass.transform.localPosition;
     }
-    
+
+    private void addDownForce()
+    {
+        rb.AddForce(-transform.up* addDownForceValue*rb.velocity.magnitude);
+    }
+    private void getFriction()
+    {
+        for (int i = 0; i < wheels.Length; i++)
+        {
+            WheelHit wheelHit;
+            wheels[i].GetGroundHit(out wheelHit);
+
+           //slip[i] = wheelHit.sidewaysSlip;
+            slip[i] = wheelHit.forwardSlip;
+        }
+    }
+
 }
