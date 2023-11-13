@@ -19,6 +19,13 @@ public class CheckPointManager : MonoBehaviour
     [HideInInspector]
     public CheckPoint currentpoint;
 
+    private GameManager manager;
+
+    private void Start()
+    {
+        manager = FindObjectOfType<GameManager>();
+    }
+
     private void Awake()
     {
         currentTargetIndex = 1;
@@ -41,15 +48,10 @@ public class CheckPointManager : MonoBehaviour
             currentTargetIndex = 0;
 
             // next lap
-            TriggerLap();
+            manager.TriggerLap();
         }
 
         currentpoint = checkpoints[currentTargetIndex].checkPoint;
-    }
-
-    public void TriggerLap()
-    {
-        Debug.Log("LAP!");
     }
 
     public void OnDrawGizmos()
