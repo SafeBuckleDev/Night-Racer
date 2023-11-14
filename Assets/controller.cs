@@ -12,20 +12,26 @@ public class controller : MonoBehaviour
     }
     [SerializeField]private driveType drive;
 
-
-    private InputManager Im;
+   
+    public GameObject wheelMeshes, wheelColliders;
+    public Rigidbody rb; 
     public WheelCollider[] wheels = new WheelCollider[4];
     public GameObject[] wheelMesh = new GameObject[4];
+    public float[] slip = new float[4];
+    private InputManager Im;
     private GameObject centerOfMass;
-    public Rigidbody rb;
+    
+
+    [Header("variables")]
+    public bool AssembleCar;
     public float KPH;
     public int motortorque = 100;
+    public float thrust = 1000f;
     public float radius = 6;
     public float addDownForceValue= 50;
     public float Brakepower;
     public float steeringMax = 4;
 
-    public float[] slip = new float[4];
     void Start()
     {
         getObjects();
@@ -80,6 +86,13 @@ public class controller : MonoBehaviour
         {
             wheels[3].brakeTorque = wheels[2].brakeTorque = 0;
         }
+
+        if (Im.boosting)
+        {
+            rb.AddForce(Vector3.forward * thrust);
+            
+        }
+        
     }
     private void steerVehicle()
     {
@@ -123,10 +136,26 @@ public class controller : MonoBehaviour
              
     }
     
+    
     private void getObjects()
     {
         Im = GetComponent<InputManager>();
         rb = GetComponent<Rigidbody>();
+        if(AssembleCar== true)
+        {
+         wheelColliders = GameObject.Find("colliders");
+         wheelMeshes = GameObject.Find("visuals");
+
+         wheels[0] = wheelColliders.transform.Find("c0").gameObject.GetComponent<WheelCollider>();
+         wheels[1] = wheelColliders.transform.Find("c1").gameObject.GetComponent<WheelCollider>();
+         wheels[2] = wheelColliders.transform.Find("c2").gameObject.GetComponent<WheelCollider>();
+         wheels[3] = wheelColliders.transform.Find("c3").gameObject.GetComponent<WheelCollider>();
+       
+         wheelMesh[0] = wheelMeshes.transform.Find("0").gameObject;
+         wheelMesh[1] = wheelMeshes.transform.Find("1").gameObject;
+         wheelMesh[2] = wheelMeshes.transform.Find("2").gameObject;
+         wheelMesh[3] = wheelMeshes.transform.Find("3").gameObject;
+        }
         centerOfMass = GameObject.Find("centerMass");
         rb.centerOfMass = centerOfMass.transform.localPosition;
     }

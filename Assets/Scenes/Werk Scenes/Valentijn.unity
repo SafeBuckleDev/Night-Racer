@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 239866164}
   - component: {fileID: 239866165}
   m_Layer: 0
-  m_Name: rightfront
+  m_Name: c1
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 397059115}
   - component: {fileID: 397059116}
   m_Layer: 0
-  m_Name: left front
+  m_Name: c0
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -549,7 +549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483652289}
   m_Layer: 0
-  m_Name: left backvisuals
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -822,8 +822,8 @@ Transform:
   - {fileID: 1880592521}
   - {fileID: 483652289}
   - {fileID: 1101057392}
-  m_Father: {fileID: 1984003459}
-  m_RootOrder: 4
+  m_Father: {fileID: 5468129193934596483}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &903998491
 GameObject:
@@ -854,7 +854,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5468129193934596483}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &918409232
 PrefabInstance:
@@ -939,7 +939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 932962385}
   m_Layer: 0
-  m_Name: left front visual
+  m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1365,7 +1365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1101057392}
   m_Layer: 0
-  m_Name: right back visuals
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1623,7 +1623,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5468129193934596483}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1297476234
 PrefabInstance:
@@ -1851,7 +1851,7 @@ GameObject:
   - component: {fileID: 1672532367}
   - component: {fileID: 1672532368}
   m_Layer: 0
-  m_Name: right back
+  m_Name: c3
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1913,7 +1913,7 @@ GameObject:
   - component: {fileID: 1764508903}
   - component: {fileID: 1764508904}
   m_Layer: 0
-  m_Name: left back
+  m_Name: c2
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2047,7 +2047,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880592521}
   m_Layer: 0
-  m_Name: rightfrontvisual
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2101,9 +2101,8 @@ Transform:
   - {fileID: 239866164}
   - {fileID: 1764508903}
   - {fileID: 1672532367}
-  - {fileID: 895387810}
   m_Father: {fileID: 5468129193934596483}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2002646725
 PrefabInstance:
@@ -2453,6 +2452,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7115718826989841239}
+  - {fileID: 895387810}
   - {fileID: 1984003459}
   - {fileID: 903998492}
   - {fileID: 1210573623}
@@ -2472,16 +2472,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drive: 2
+  wheelMeshes: {fileID: 0}
+  wheelColliders: {fileID: 0}
   wheels:
-  - {fileID: 397059116}
-  - {fileID: 239866165}
-  - {fileID: 1764508904}
-  - {fileID: 1672532368}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   wheelMesh:
-  - {fileID: 932962384}
-  - {fileID: 1880592520}
-  - {fileID: 483652288}
-  - {fileID: 1101057391}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   rb: {fileID: 0}
   KPH: 0
   motortorque: 500
