@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59081a6d4fda7e749bfc88de101024f3, type: 3}
   m_Name: corner
   m_EditorClassIdentifier: 
-  chunkPrefab: {fileID: 0}
+  chunkPrefab: {fileID: 440178104064813345, guid: e3b19dacfc329b94ebcaf52b77299a8b, type: 3}

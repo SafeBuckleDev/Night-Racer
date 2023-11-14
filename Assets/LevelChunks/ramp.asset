@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59081a6d4fda7e749bfc88de101024f3, type: 3}
   m_Name: ramp
   m_EditorClassIdentifier: 
-  chunkPrefab: {fileID: 0}
+  chunkPrefab: {fileID: 9113657363880419105, guid: 9cf99bbd2acdb8c4c821bf63c3beade0, type: 3}

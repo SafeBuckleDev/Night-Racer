@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59081a6d4fda7e749bfc88de101024f3, type: 3}
   m_Name: straight
   m_EditorClassIdentifier: 
-  chunkPrefab: {fileID: 0}
+  chunkPrefab: {fileID: 440178104064813345, guid: 4380f2a3d5b5ae94d95185daf50968b2, type: 3}
