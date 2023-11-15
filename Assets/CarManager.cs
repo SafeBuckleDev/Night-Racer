@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gameManager : MonoBehaviour
+public class CarManager : MonoBehaviour
 {
     public controller Kart;
     public GameObject needle;
