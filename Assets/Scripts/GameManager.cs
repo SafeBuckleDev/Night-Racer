@@ -3,10 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using System.IO;
+
+[System.Serializable]
+public struct RaceData // save info
+{
+    public string name; // name of racer
+
+    public float raceTime; // time of race
+
+    //public List<GhostWaypoint> ghostWaypoints;
+}
+
+[System.Serializable]
+public struct GhostWaypoint
+{
+    public Vector3 pos;
+    public Quaternion rot;
+}
 
 public class GameManager : MonoBehaviour
 {
     public PlayerStates state;
+    public string racerName;
+    [SerializeField] private GameObject carObj;
+    public int totalLaps;
+    public int currentLap;
     [Space]
 
     [Header("GameCountdown")]
@@ -23,9 +45,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text bestLapText;
     private List<float> lapTimes = new List<float>();
     private float bestTime;
+    [Space]
+    private string path;
+    private string persistentPath;
+    private List<GhostWaypoint> pWaypoints;
 
     public void Start()
     {
+        currentLap = 1;
+
         bestLapText.gameObject.SetActive(false);
         StartCoroutine(StartCountDownSequence(countDownMessages));
     }
@@ -73,10 +101,67 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("LAP!");
         lapTimes.Add(lapTime);
-        lapTime = 0;
+
+        if (currentLap < totalLaps)
+        {
+            currentLap++;
+            lapTime = 0;
+        }
+        else
+        {
+            inRace = false;
+
+            CalTotalRaceTime();
+
+            SaveScore(racerName, CalTotalRaceTime());
+        }
 
         bestTime = lapTimes.Min();
         bestLapText.text = "Best Lap: " + bestTime.ToString("F2");
         bestLapText.gameObject.SetActive(true);
+    }
+
+    private float CalTotalRaceTime()
+    {
+        float time = 0;
+
+        foreach (float lt in lapTimes)
+        {
+            time += lt;
+        }
+
+        Debug.Log("TOTAL TIME: " + time);
+
+        return time;
+    }
+
+    private void SetDataPath(string name)
+    {
+        string filename = name + ".json";
+
+        path = Application.dataPath + Path.AltDirectorySeparatorChar + filename;
+        persistentPath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + filename;
+    }
+
+    private void SaveData(RaceData data)
+    {
+        string savePath = persistentPath;
+
+        Debug.Log("Saving Data at " + savePath);
+        string json = JsonUtility.ToJson(data);
+
+        using StreamWriter writer = new StreamWriter(savePath);
+        writer.Write(json);
+    }
+
+    private void SaveScore(string name ,float time)
+    {
+        RaceData data;
+        data.name = name;
+        data.raceTime = time;
+
+        SetDataPath(name);
+
+        SaveData(data);
     }
 }

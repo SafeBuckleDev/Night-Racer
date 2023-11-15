@@ -41,14 +41,17 @@ public class CheckPointManager : MonoBehaviour
 
     public void TriggerCheckPoint()
     {
+        if (currentTargetIndex == 0)
+        {
+            // next lap
+            manager.TriggerLap();
+        }
+
         currentTargetIndex++;
 
         if (currentTargetIndex >= checkpoints.Count || currentTargetIndex < 0)
         {
             currentTargetIndex = 0;
-
-            // next lap
-            manager.TriggerLap();
         }
 
         currentpoint = checkpoints[currentTargetIndex].checkPoint;
