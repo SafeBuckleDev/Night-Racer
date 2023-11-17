@@ -23,6 +23,8 @@ public class controller : MonoBehaviour
     
 
     [Header("variables")]
+    public float totalPower;
+    public AnimationCurve enginePower;
     public bool AssembleCar;
     public float KPH;
     public int motortorque = 100;
@@ -51,7 +53,6 @@ public class controller : MonoBehaviour
 
     private void moveVehicle()
     {
-        float totalPower;
 
         if(drive== driveType.fourWheelDrive)
         {
@@ -143,8 +144,8 @@ public class controller : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         if(AssembleCar== true)
         {
-         wheelColliders = GameObject.Find("colliders");
-         wheelMeshes = GameObject.Find("visuals");
+         wheelColliders = GameObject.Find("visuals&colliders");
+         wheelMeshes = GameObject.Find("visuals&colliders");
 
          wheels[0] = wheelColliders.transform.Find("c0").gameObject.GetComponent<WheelCollider>();
          wheels[1] = wheelColliders.transform.Find("c1").gameObject.GetComponent<WheelCollider>();
