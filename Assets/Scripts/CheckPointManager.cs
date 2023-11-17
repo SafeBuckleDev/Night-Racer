@@ -31,14 +31,6 @@ public class CheckPointManager : MonoBehaviour
         currentTargetIndex = 1;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TriggerCheckPoint();
-        }
-    }
-
     public void TriggerCheckPoint()
     {
         if (currentTargetIndex == 0)
