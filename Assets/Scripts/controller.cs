@@ -23,6 +23,14 @@ public class controller : MonoBehaviour
     
 
     [Header("variables")]
+    public float totalPower;
+    public float wheelsRPM;
+    public float smoothTime = 0.1f;
+    public float engineRpm;
+    public float[]gears;
+    public int gearNum;
+
+    public AnimationCurve enginePower;
     public bool AssembleCar;
     public float KPH;
     public int motortorque = 100;
@@ -46,18 +54,55 @@ public class controller : MonoBehaviour
         moveVehicle();
         steerVehicle();
         getFriction();
+        calculateEnginePower();
+        Shifter();
+    }
+    private void calculateEnginePower()
+    {
+        wheelRPM();
 
+        totalPower = enginePower.Evaluate(engineRpm) * (gears[gearNum]) * Im.vertical;
+        float velocity = 0.0f;
+        engineRpm = Mathf.SmoothDamp(engineRpm, 1000 + (Mathf.Abs(wheelsRPM) *3.6f * (gears[gearNum])), ref velocity, smoothTime);
+    }
+    private void wheelRPM()
+    {
+        float sum = 0;
+        int R = 0;
+        for(int i = 0; i< 4; i++)
+        {
+            sum += wheels[i].rpm;
+            R++;
+        }
+        wheelsRPM = (R != 0) ? sum / R : 0;
+    }
+    private void Shifter()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(gearNum>= 0 && gearNum <=5)
+            {
+             gearNum++;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (gearNum >= 0 && gearNum < 6)
+            {
+                gearNum--;
+
+            }
+        }
     }
 
     private void moveVehicle()
     {
-        float totalPower;
 
         if(drive== driveType.fourWheelDrive)
         {
             for (int i = 0; i < wheels.Length; i++)
             {
-                wheels[i].motorTorque = Im.vertical*(motortorque/4);
+                wheels[i].motorTorque = Im.vertical*(totalPower/4);
             }
 
         }
@@ -65,14 +110,14 @@ public class controller : MonoBehaviour
         {
             for (int i = 2; i < wheels.Length; i++)
             {
-                wheels[i].motorTorque = Im.vertical * (motortorque / 2);
+                wheels[i].motorTorque = Im.vertical * (totalPower / 2);
             }
         }
         else
         {
             for (int i = 0; i < wheels.Length-2; i++)
             {
-                wheels[i].motorTorque = Im.vertical * (motortorque / 2);
+                wheels[i].motorTorque = Im.vertical * (totalPower / 2);
             }
         }
 
@@ -143,8 +188,8 @@ public class controller : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         if(AssembleCar== true)
         {
-         wheelColliders = GameObject.Find("colliders");
-         wheelMeshes = GameObject.Find("visuals");
+         wheelColliders = GameObject.Find("visuals&colliders");
+         wheelMeshes = GameObject.Find("visuals&colliders");
 
          wheels[0] = wheelColliders.transform.Find("c0").gameObject.GetComponent<WheelCollider>();
          wheels[1] = wheelColliders.transform.Find("c1").gameObject.GetComponent<WheelCollider>();

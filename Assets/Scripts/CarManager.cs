@@ -22,7 +22,8 @@ public class CarManager : MonoBehaviour
     public void updateNeedle()
     {
         desiredPos = startPos - endPos;
-        float temp = vehiclespeed / 180;
+        //float temp = vehiclespeed / 180;
+        float temp = Kart.engineRpm/ 10000;
         needle.transform.eulerAngles = new Vector3(0, 0, (startPos - temp * desiredPos));
     }
 }
