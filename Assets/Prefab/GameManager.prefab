@@ -513,39 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc065080013ed3419fcb2c972d9ee64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpoints:
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
-  - name: 
-    checkPoint: {fileID: 0}
+  checkpoints: []
   currentTargetIndex: 0
   currentpoint: {fileID: 0}
 --- !u!1 &9022959305879215883

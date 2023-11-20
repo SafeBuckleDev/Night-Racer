@@ -46,7 +46,14 @@ public class CheckPointManager : MonoBehaviour
             currentTargetIndex = 0;
         }
 
+        foreach (CheckpointElement checkPoint in checkpoints) // disable all checkpoint objs
+        {
+            checkPoint.checkPoint.gameObject.SetActive(false);
+        }
+
         currentpoint = checkpoints[currentTargetIndex].checkPoint;
+
+        checkpoints[currentTargetIndex].checkPoint.gameObject.SetActive(true);
     }
 
     public void OnDrawGizmos()
