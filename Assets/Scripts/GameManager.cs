@@ -116,9 +116,21 @@ public class GameManager : MonoBehaviour
             SaveScore(racerName, CalTotalRaceTime());
         }
 
+        StartCoroutine(RecordBestLap());
+    }
+
+    private IEnumerator RecordBestLap()
+    {
         bestTime = lapTimes.Min();
+
         bestLapText.text = "Best Lap: " + bestTime.ToString("F2");
         bestLapText.gameObject.SetActive(true);
+
+        for (int i = 0; i < 6; i++)
+        {
+            bestLapText.gameObject.SetActive(!bestLapText.gameObject.activeInHierarchy);
+            yield return new WaitForSeconds(.3f);
+        }
     }
 
     private float CalTotalRaceTime()
