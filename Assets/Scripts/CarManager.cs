@@ -8,6 +8,7 @@ public class CarManager : MonoBehaviour
     public controller Kart;
     public GameObject needle;
     public Text gearNumText;
+    public Text KPHtext;
     private float startPos= 225, endPos= -410;
     private float desiredPos;
 
@@ -19,6 +20,7 @@ public class CarManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        KPHtext.text = Kart.KPH.ToString("0");
         updateNeedle();
     }
     public void updateNeedle()

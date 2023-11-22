@@ -34,6 +34,7 @@ public class controller : MonoBehaviour
     public float wheelsRPM;
     public float smoothTime = 0.1f;
     public float engineRpm;
+    public bool reverse;
     public float[]gears;
     public int gearNum;
 
@@ -82,9 +83,21 @@ public class controller : MonoBehaviour
             R++;
         }
         wheelsRPM = (R != 0) ? sum / R : 0;
+
+        if(wheelsRPM< 0.5f && !reverse)
+        {
+            reverse = true;
+            carManager.changeGear();
+        }
+        else if(wheelsRPM >0.5f && reverse)
+        {
+            reverse = false;
+            carManager.changeGear();
+        }
     }
     private void Shifter()
     {
+        if (!isGrounded()) return;
         if(gearChange == gearType.automatic)
         {
             if(engineRpm> maxRPM && gearNum< gears.Length - 1)
@@ -95,24 +108,20 @@ public class controller : MonoBehaviour
         }
         else
         {
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (gearNum >= 0 && gearNum <= 5)
-                {
-                    gearNum++;
-                    carManager.changeGear();
-                }
-            }
+          if (Input.GetKeyDown(KeyCode.E))
+          {
+             gearNum++;
+             carManager.changeGear();
+          }
         }
         if(engineRpm< minRPM && gearNum> 0)
         {
             gearNum--;
             carManager.changeGear();
         }
-        else if (Input.GetKeyDown(KeyCode.Q))
+        else
         {
-            if (gearNum >= 0 && gearNum < 6)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 gearNum--;
                 carManager.changeGear();
@@ -120,6 +129,17 @@ public class controller : MonoBehaviour
         }
 
     }
+        private bool isGrounded()
+        {
+            if(wheels[0].isGrounded&& wheels[1].isGrounded && wheels[2].isGrounded && wheels[3].isGrounded)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     private void moveVehicle()
     {
