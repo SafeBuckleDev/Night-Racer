@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CarManager : MonoBehaviour
 {
     public controller Kart;
     public GameObject needle;
+    public Text gearNumText;
     private float startPos= 225, endPos= -410;
     private float desiredPos;
 
@@ -25,5 +27,10 @@ public class CarManager : MonoBehaviour
         //float temp = vehiclespeed / 180;
         float temp = Kart.engineRpm/ 10000;
         needle.transform.eulerAngles = new Vector3(0, 0, (startPos - temp * desiredPos));
+    }
+
+    public void changeGear()
+    {
+        gearNumText.text = Kart.gearNum.ToString();
     }
 }

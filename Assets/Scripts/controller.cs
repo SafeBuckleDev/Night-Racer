@@ -10,9 +10,15 @@ public class controller : MonoBehaviour
         rearWheelDrive,
         fourWheelDrive
     }
+    internal enum gearType
+    {
+        automatic,
+        manual
+    }
+    [SerializeField] private gearType gearChange;
     [SerializeField]private driveType drive;
 
-   
+    public CarManager carManager;
     public GameObject wheelMeshes, wheelColliders;
     public Rigidbody rb; 
     public WheelCollider[] wheels = new WheelCollider[4];
@@ -24,6 +30,7 @@ public class controller : MonoBehaviour
 
     [Header("variables")]
     public float totalPower;
+    public float maxRPM,minRPM;
     public float wheelsRPM;
     public float smoothTime = 0.1f;
     public float engineRpm;
@@ -78,21 +85,40 @@ public class controller : MonoBehaviour
     }
     private void Shifter()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if(gearChange == gearType.automatic)
         {
-            if(gearNum>= 0 && gearNum <=5)
+            if(engineRpm> maxRPM && gearNum< gears.Length - 1)
             {
-             gearNum++;
+                gearNum++;
+                carManager.changeGear();
             }
+        }
+        else
+        {
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (gearNum >= 0 && gearNum <= 5)
+                {
+                    gearNum++;
+                    carManager.changeGear();
+                }
+            }
+        }
+        if(engineRpm< minRPM && gearNum> 0)
+        {
+            gearNum--;
+            carManager.changeGear();
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             if (gearNum >= 0 && gearNum < 6)
             {
                 gearNum--;
-
+                carManager.changeGear();
             }
         }
+
     }
 
     private void moveVehicle()
@@ -159,13 +185,6 @@ public class controller : MonoBehaviour
             wheels[0].steerAngle = 0;
             wheels[1].steerAngle = 0;
         }
-
-
-
-        //for (int i = 0; i < wheels.Length - 2; i++)
-        //{
-        //    wheels[i].steerAngle = Im.horizontal * steeringMax;
-        //}
     }
     void animateWheels()
     {
@@ -216,7 +235,6 @@ public class controller : MonoBehaviour
             WheelHit wheelHit;
             wheels[i].GetGroundHit(out wheelHit);
 
-           //slip[i] = wheelHit.sidewaysSlip;
             slip[i] = wheelHit.forwardSlip;
         }
     }
