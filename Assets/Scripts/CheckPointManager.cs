@@ -31,14 +31,6 @@ public class CheckPointManager : MonoBehaviour
         currentTargetIndex = 1;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TriggerCheckPoint();
-        }
-    }
-
     public void TriggerCheckPoint()
     {
         if (currentTargetIndex == 0)
@@ -54,7 +46,14 @@ public class CheckPointManager : MonoBehaviour
             currentTargetIndex = 0;
         }
 
+        foreach (CheckpointElement checkPoint in checkpoints) // disable all checkpoint objs
+        {
+            checkPoint.checkPoint.gameObject.SetActive(false);
+        }
+
         currentpoint = checkpoints[currentTargetIndex].checkPoint;
+
+        checkpoints[currentTargetIndex].checkPoint.gameObject.SetActive(true);
     }
 
     public void OnDrawGizmos()
