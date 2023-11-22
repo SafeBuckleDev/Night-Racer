@@ -25,12 +25,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4636937222295338210}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.43499947, y: -0.062000036, z: 0.6949997}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6766538252282999715}
+  m_Father: {fileID: 6766538252958652584}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8988550368498313725
@@ -109,12 +109,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6766538251960353782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.4239998, y: -0.062000036, z: -0.8770008}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6766538252763343654}
-  m_RootOrder: 0
+  m_Father: {fileID: 6766538252958652584}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6766538251960353787
 MeshFilter:
@@ -194,10 +194,9 @@ Transform:
   m_LocalPosition: {x: -0.43499947, y: -0.062000036, z: -0.8770008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6766538253062164290}
+  m_Children: []
   m_Father: {fileID: 6766538252958652584}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &6766538252206217542
 WheelCollider:
@@ -257,10 +256,9 @@ Transform:
   m_LocalPosition: {x: -0.43499947, y: -0.062000036, z: 0.6949997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5409497679602607704}
+  m_Children: []
   m_Father: {fileID: 6766538252958652584}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &6766538252282999714
 WheelCollider:
@@ -351,10 +349,9 @@ Transform:
   m_LocalPosition: {x: 0.4239998, y: -0.062000036, z: 0.6949997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6766538252791037653}
+  m_Children: []
   m_Father: {fileID: 6766538252958652584}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &6766538252404310656
 WheelCollider:
@@ -445,10 +442,9 @@ Transform:
   m_LocalPosition: {x: 0.4239998, y: -0.062000036, z: -0.8770008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6766538251960353785}
+  m_Children: []
   m_Father: {fileID: 6766538252958652584}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!146 &6766538252763343657
 WheelCollider:
@@ -506,12 +502,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6766538252791037650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.4239998, y: -0.062000036, z: 0.6949997}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6766538252404310657}
-  m_RootOrder: 0
+  m_Father: {fileID: 6766538252958652584}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6766538252791037655
 MeshFilter:
@@ -591,6 +587,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5409497679602607704}
+  - {fileID: 6766538252791037653}
+  - {fileID: 6766538253062164290}
+  - {fileID: 6766538251960353785}
   - {fileID: 6766538252282999715}
   - {fileID: 6766538252404310657}
   - {fileID: 6766538252206217543}
@@ -624,12 +624,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6766538253062164291}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.43499947, y: -0.062000036, z: -0.8770008}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6766538252206217543}
-  m_RootOrder: 0
+  m_Father: {fileID: 6766538252958652584}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6766538253062164292
 MeshFilter:
@@ -761,7 +761,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221392ad85caeaa4389088959626ad29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gearChange: 0
   drive: 1
+  carManager: {fileID: 0}
   wheelMeshes: {fileID: 0}
   wheelColliders: {fileID: 0}
   rb: {fileID: 6766538253136330108}
@@ -781,6 +783,8 @@ MonoBehaviour:
   - 0
   - 0
   totalPower: 0
+  maxRPM: 0
+  minRPM: 0
   wheelsRPM: 0
   smoothTime: 0.1
   engineRpm: 0

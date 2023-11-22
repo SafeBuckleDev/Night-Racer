@@ -10,9 +10,15 @@ public class controller : MonoBehaviour
         rearWheelDrive,
         fourWheelDrive
     }
+    internal enum gearType
+    {
+        automatic,
+        manual
+    }
+    [SerializeField] private gearType gearChange;
     [SerializeField]private driveType drive;
 
-   
+    public CarManager carManager;
     public GameObject wheelMeshes, wheelColliders;
     public Rigidbody rb; 
     public WheelCollider[] wheels = new WheelCollider[4];
@@ -24,9 +30,11 @@ public class controller : MonoBehaviour
 
     [Header("variables")]
     public float totalPower;
+    public float maxRPM,minRPM;
     public float wheelsRPM;
     public float smoothTime = 0.1f;
     public float engineRpm;
+    public bool reverse;
     public float[]gears;
     public int gearNum;
 
@@ -75,25 +83,63 @@ public class controller : MonoBehaviour
             R++;
         }
         wheelsRPM = (R != 0) ? sum / R : 0;
+
+        if(wheelsRPM< 0.5f && !reverse)
+        {
+            reverse = true;
+            carManager.changeGear();
+        }
+        else if(wheelsRPM >0.5f && reverse)
+        {
+            reverse = false;
+            carManager.changeGear();
+        }
     }
     private void Shifter()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (!isGrounded()) return;
+        if(gearChange == gearType.automatic)
         {
-            if(gearNum>= 0 && gearNum <=5)
+            if(engineRpm> maxRPM && gearNum< gears.Length - 1)
             {
-             gearNum++;
+                gearNum++;
+                carManager.changeGear();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Q))
+        else
         {
-            if (gearNum >= 0 && gearNum < 6)
+          if (Input.GetKeyDown(KeyCode.E))
+          {
+             gearNum++;
+             carManager.changeGear();
+          }
+        }
+        if(engineRpm< minRPM && gearNum> 0)
+        {
+            gearNum--;
+            carManager.changeGear();
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 gearNum--;
-
+                carManager.changeGear();
             }
         }
+
     }
+        private bool isGrounded()
+        {
+            if(wheels[0].isGrounded&& wheels[1].isGrounded && wheels[2].isGrounded && wheels[3].isGrounded)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     private void moveVehicle()
     {
@@ -159,13 +205,6 @@ public class controller : MonoBehaviour
             wheels[0].steerAngle = 0;
             wheels[1].steerAngle = 0;
         }
-
-
-
-        //for (int i = 0; i < wheels.Length - 2; i++)
-        //{
-        //    wheels[i].steerAngle = Im.horizontal * steeringMax;
-        //}
     }
     void animateWheels()
     {
@@ -216,7 +255,6 @@ public class controller : MonoBehaviour
             WheelHit wheelHit;
             wheels[i].GetGroundHit(out wheelHit);
 
-           //slip[i] = wheelHit.sidewaysSlip;
             slip[i] = wheelHit.forwardSlip;
         }
     }
