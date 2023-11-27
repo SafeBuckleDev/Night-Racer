@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main/TempGarage.unity
     guid: c43cf8e26b6f92a459fdb8d2071eff0e
+  - enabled: 1
+    path: Assets/Map.unity
+    guid: fbc6bc6826ffd714da2c33f7247b1840
   m_configObjects: {}

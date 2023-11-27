@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   field: {fileID: 961701401}
-  sceneToLoad: MainMenu
+  sceneToLoad: Map
 --- !u!1 &1395823557
 GameObject:
   m_ObjectHideFlags: 0
