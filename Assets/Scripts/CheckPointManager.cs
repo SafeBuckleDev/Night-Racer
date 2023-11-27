@@ -24,6 +24,7 @@ public class CheckPointManager : MonoBehaviour
     private void Start()
     {
         manager = FindObjectOfType<GameManager>();
+      
     }
 
     private void Awake()
