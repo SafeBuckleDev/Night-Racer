@@ -4298,12 +4298,44 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1784734265965034357, guid: 5d414731b9aba924dba02e8b017691cf, type: 3}
+      propertyPath: maxRPM
+      value: 1250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784734265965034357, guid: 5d414731b9aba924dba02e8b017691cf, type: 3}
+      propertyPath: minRPM
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784734265965034357, guid: 5d414731b9aba924dba02e8b017691cf, type: 3}
       propertyPath: carManager
       value: 
       objectReference: {fileID: 672141121}
     - target: {fileID: 1784734265965034357, guid: 5d414731b9aba924dba02e8b017691cf, type: 3}
       propertyPath: AssembleCar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784734265965034357, guid: 5d414731b9aba924dba02e8b017691cf, type: 3}
+      propertyPath: enginePower.m_Curve.Array.data[0].time
+      value: -3986.5984
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784734265965034357, guid: 5d414731b9aba924dba02e8b017691cf, type: 3}
+      propertyPath: enginePower.m_Curve.Array.data[1].time
+      value: -472.96826
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784734265965034357, guid: 5d414731b9aba924dba02e8b017691cf, type: 3}
+      propertyPath: enginePower.m_Curve.Array.data[2].time
+      value: 2047.6808
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784734265965034357, guid: 5d414731b9aba924dba02e8b017691cf, type: 3}
+      propertyPath: enginePower.m_Curve.Array.data[0].value
+      value: 518.133
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784734265965034357, guid: 5d414731b9aba924dba02e8b017691cf, type: 3}
+      propertyPath: enginePower.m_Curve.Array.data[1].value
+      value: 3037.3882
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784734265965034357, guid: 5d414731b9aba924dba02e8b017691cf, type: 3}
+      propertyPath: enginePower.m_Curve.Array.data[2].value
+      value: 1918.4811
       objectReference: {fileID: 0}
     - target: {fileID: 1784734265965034359, guid: 5d414731b9aba924dba02e8b017691cf, type: 3}
       propertyPath: m_Name

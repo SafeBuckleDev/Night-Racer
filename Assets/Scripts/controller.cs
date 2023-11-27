@@ -70,6 +70,12 @@ public class controller : MonoBehaviour
         calculateEnginePower();
         Shifter();
         checkWheelSpin();
+        if(gameObject.transform.rotation.z >=80 || gameObject.transform.rotation.z <= -80)
+        {
+            gameObject.transform.Rotate(0, 0, 0);
+
+        }
+        
     }
     private void calculateEnginePower()
     {
