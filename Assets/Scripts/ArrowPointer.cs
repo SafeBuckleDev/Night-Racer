@@ -13,6 +13,6 @@ public class ArrowPointer : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.LookAt(cManager.checkpoints[cManager.currentTargetIndex].checkPoint.transform);
+        transform.LookAt(cManager.checkpoints[cManager.currentTargetIndex].transform);
     }
 }
