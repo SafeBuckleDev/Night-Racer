@@ -69,7 +69,7 @@ public class controller : MonoBehaviour
         getFriction();
         calculateEnginePower();
         Shifter();
-        checkWheelSpin();
+       // checkWheelSpin();
         if(gameObject.transform.rotation.z >=80 || gameObject.transform.rotation.z <= -80)
         {
             gameObject.transform.Rotate(0, 0, 0);
@@ -184,7 +184,7 @@ public class controller : MonoBehaviour
         if (Im.handBrake)
         {
             wheels[3].brakeTorque = wheels[2].brakeTorque = Brakepower;
-            adjustTraction();
+          //  adjustTraction();
         }
         else
         {
