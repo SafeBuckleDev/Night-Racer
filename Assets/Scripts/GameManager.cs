@@ -25,6 +25,7 @@ public struct GhostWaypoint
 public class GameManager : MonoBehaviour
 {
     public PlayerStates state;
+    [HideInInspector]
     public string racerName;
     [SerializeField] private GameObject carObj;
     public int totalLaps;
@@ -53,6 +54,8 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         currentLap = 1;
+
+        racerName = PlayerPrefs.GetString("DriverName", name);
 
         bestLapText.gameObject.SetActive(false);
         StartCoroutine(StartCountDownSequence(countDownMessages));
