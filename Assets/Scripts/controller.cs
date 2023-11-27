@@ -69,6 +69,7 @@ public class controller : MonoBehaviour
         getFriction();
         calculateEnginePower();
         Shifter();
+        checkWheelSpin();
     }
     private void calculateEnginePower()
     {
@@ -177,6 +178,7 @@ public class controller : MonoBehaviour
         if (Im.handBrake)
         {
             wheels[3].brakeTorque = wheels[2].brakeTorque = Brakepower;
+            adjustTraction();
         }
         else
         {
