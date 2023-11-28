@@ -217,15 +217,22 @@ public class controller : MonoBehaviour
 
             if (Im.handBrake)
             {
-                wheels[3].brakeTorque = wheels[2].brakeTorque = Brakepower;
+                wheels[3].brakeTorque = Brakepower;
+                wheels[2].brakeTorque = Brakepower;
+                wheels[1].brakeTorque = Brakepower;
+                wheels[0].brakeTorque = Brakepower;
+
                 //  adjustTraction();
             }
             else
             {
-                wheels[3].brakeTorque = wheels[2].brakeTorque = 0;
+                wheels[3].brakeTorque = 0;
+                wheels[2].brakeTorque = 0;
+                wheels[1].brakeTorque = 0;
+                wheels[0].brakeTorque = 0;
             }
 
-            if (Im.boosting)
+                if (Im.boosting)
             {
                 rb.AddForce(Vector3.forward * thrust);
 
