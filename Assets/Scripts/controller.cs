@@ -74,9 +74,9 @@ public class controller : MonoBehaviour
         {
             gameObject.transform.Rotate(0, 0, -80);
 
-        }else if(gameObject.transform.rotation.z <= -80)
+        }else if(gameObject.transform.rotation.z <= -70)
         {
-            gameObject.transform.Rotate(0, 0, 80);
+            gameObject.transform.Rotate(0, 0, 70);
 
         }
         

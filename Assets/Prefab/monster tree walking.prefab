@@ -1197,6 +1197,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7138073249979073583}
   - component: {fileID: 3886513130406501973}
+  - component: {fileID: 5297006975224802246}
+  - component: {fileID: 1934079980083082404}
   m_Layer: 0
   m_Name: monster tree walking
   m_TagString: Untagged
@@ -1249,6 +1251,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5297006975224802246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513226155286650517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874cbe26195b16740bc0943e3c536177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
+  monsterTreeAnim: {fileID: 0}
+  speed: 15
+--- !u!65 &1934079980083082404
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513226155286650517}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 25.559376, z: 10}
+  m_Center: {x: 0, y: 12.279615, z: 0}
 --- !u!1 &8061216187293486534
 GameObject:
   m_ObjectHideFlags: 0
