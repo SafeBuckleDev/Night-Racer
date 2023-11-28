@@ -70,9 +70,13 @@ public class controller : MonoBehaviour
         calculateEnginePower();
         Shifter();
        // checkWheelSpin();
-        if(gameObject.transform.rotation.z >=80 || gameObject.transform.rotation.z <= -80)
+        if(gameObject.transform.rotation.z >=80)
         {
-            gameObject.transform.Rotate(0, 0, 0);
+            gameObject.transform.Rotate(0, 0, -80);
+
+        }else if(gameObject.transform.rotation.z <= -80)
+        {
+            gameObject.transform.Rotate(0, 0, 80);
 
         }
         
@@ -155,46 +159,77 @@ public class controller : MonoBehaviour
 
     private void moveVehicle()
     {
-
-        if(drive== driveType.fourWheelDrive)
+        if (Input.GetKey(KeyCode.S))
         {
-            for (int i = 0; i < wheels.Length; i++)
+            if (drive == driveType.fourWheelDrive)
             {
-                wheels[i].motorTorque = Im.vertical*(totalPower/4);
+                for (int i = 0; i < wheels.Length; i++)
+                {
+                    wheels[i].motorTorque = -Im.vertical * (totalPower / 4);
+                }
+
+            }
+            else if (drive == driveType.rearWheelDrive)
+            {
+                for (int i = 2; i < wheels.Length; i++)
+                {
+                    wheels[i].motorTorque = -Im.vertical * (totalPower / 2);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < wheels.Length - 2; i++)
+                {
+                    wheels[i].motorTorque = -Im.vertical * (totalPower / 2);
+                }
             }
 
-        }
-        else if(drive == driveType.rearWheelDrive)
-        {
-            for (int i = 2; i < wheels.Length; i++)
-            {
-                wheels[i].motorTorque = Im.vertical * (totalPower / 2);
-            }
+            KPH = rb.velocity.magnitude * 3.6f;
+
         }
         else
         {
-            for (int i = 0; i < wheels.Length-2; i++)
+
+            if (drive == driveType.fourWheelDrive)
             {
-                wheels[i].motorTorque = Im.vertical * (totalPower / 2);
+                for (int i = 0; i < wheels.Length; i++)
+                {
+                    wheels[i].motorTorque = Im.vertical * (totalPower / 4);
+                }
+
             }
-        }
+            else if (drive == driveType.rearWheelDrive)
+            {
+                for (int i = 2; i < wheels.Length; i++)
+                {
+                    wheels[i].motorTorque = Im.vertical * (totalPower / 2);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < wheels.Length - 2; i++)
+                {
+                    wheels[i].motorTorque = Im.vertical * (totalPower / 2);
+                }
+            }
 
-        KPH = rb.velocity.magnitude * 3.6f;
+            KPH = rb.velocity.magnitude * 3.6f;
 
-        if (Im.handBrake)
-        {
-            wheels[3].brakeTorque = wheels[2].brakeTorque = Brakepower;
-          //  adjustTraction();
-        }
-        else
-        {
-            wheels[3].brakeTorque = wheels[2].brakeTorque = 0;
-        }
+            if (Im.handBrake)
+            {
+                wheels[3].brakeTorque = wheels[2].brakeTorque = Brakepower;
+                //  adjustTraction();
+            }
+            else
+            {
+                wheels[3].brakeTorque = wheels[2].brakeTorque = 0;
+            }
 
-        if (Im.boosting)
-        {
-            rb.AddForce(Vector3.forward * thrust);
-            
+            if (Im.boosting)
+            {
+                rb.AddForce(Vector3.forward * thrust);
+
+            }
         }
         
     }
