@@ -564,7 +564,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266607760}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d3f79cf52cdf45349a7895144af0a3da, type: 2}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 4eaa4f33caaa5b9418aba5b1da3d0074, type: 2}
   m_EnableTreeColliders: 1
@@ -1244,7 +1244,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645437805}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d3f79cf52cdf45349a7895144af0a3da, type: 2}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: e1115ef427fd9454bb9851fdf68c55c0, type: 2}
   m_EnableTreeColliders: 1
@@ -1558,6 +1558,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1388569307349100315, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_Constraints
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569307349100317, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: Brakepower
+      value: 50000
+      objectReference: {fileID: 0}
     - target: {fileID: 1388569307349100317, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
       propertyPath: carManager
       value: 
@@ -1597,6 +1605,78 @@ PrefabInstance:
     - target: {fileID: 1388569307349100319, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
       propertyPath: m_Name
       value: yokai compleet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308084508903, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308084508903, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308084508903, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308084508903, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308206885317, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308206885317, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308206885317, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308206885317, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308281291553, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308281291553, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308281291553, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308281291553, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308795826510, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308795826510, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_Center.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308795826510, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308795826510, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308795826510, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388569308795826510, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c5e7e1f7d0c3a147be49ff34a1243a8, type: 3}
