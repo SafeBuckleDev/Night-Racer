@@ -2,18 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class CheckpointElement
-{
-    [HideInInspector]
-    public string name = "CheckPoint";
-
-    public CheckPoint checkPoint;
-}
-
 public class CheckPointManager : MonoBehaviour
 {
-    public List<CheckpointElement> checkpoints = new List<CheckpointElement>();
+    public List<CheckPoint> checkpoints = new List<CheckPoint>();
 
     public int currentTargetIndex;
     [HideInInspector]
@@ -24,6 +15,7 @@ public class CheckPointManager : MonoBehaviour
     private void Start()
     {
         manager = FindObjectOfType<GameManager>();
+      
     }
 
     private void Awake()
@@ -46,14 +38,14 @@ public class CheckPointManager : MonoBehaviour
             currentTargetIndex = 0;
         }
 
-        foreach (CheckpointElement checkPoint in checkpoints) // disable all checkpoint objs
+        foreach (CheckPoint check in checkpoints) // disable all checkpoint objs
         {
-            checkPoint.checkPoint.gameObject.SetActive(false);
+            check.gameObject.SetActive(false);
         }
 
-        currentpoint = checkpoints[currentTargetIndex].checkPoint;
+        currentpoint = checkpoints[currentTargetIndex];
 
-        checkpoints[currentTargetIndex].checkPoint.gameObject.SetActive(true);
+        checkpoints[currentTargetIndex].gameObject.SetActive(true);
     }
 
     public void OnDrawGizmos()
@@ -66,17 +58,17 @@ public class CheckPointManager : MonoBehaviour
             {
                 if (i == 0)
                 {
-                    Gizmos.DrawLine(checkpoints[i].checkPoint.transform.position, checkpoints[checkpoints.Count - 1].checkPoint.transform.position);
+                    Gizmos.DrawLine(checkpoints[i].transform.position, checkpoints[checkpoints.Count - 1].transform.position);
                 }
                 else
                 {
-                    Gizmos.DrawLine(checkpoints[i].checkPoint.transform.position, checkpoints[i - 1].checkPoint.transform.position);
+                    Gizmos.DrawLine(checkpoints[i].transform.position, checkpoints[i - 1].transform.position);
                 }
             }
 
             Gizmos.color = Color.blue;
 
-            Gizmos.DrawSphere(checkpoints[currentTargetIndex].checkPoint.transform.position, .1f);
+            Gizmos.DrawSphere(checkpoints[currentTargetIndex].transform.position, .1f);
         }
     }
 }
