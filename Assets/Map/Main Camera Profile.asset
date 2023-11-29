@@ -20,8 +20,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   intensity:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1.05
   directLightingStrength:
     m_OverrideState: 0
     m_Value: 0
@@ -81,6 +81,52 @@ MonoBehaviour:
   m_DenoiserRadius:
     m_OverrideState: 0
     m_Value: 0.5
+--- !u!114 &-4213053309300731858
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f077503be6ae942a1e1245dbd53ea9, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: 
+  active: 1
+  quality:
+    m_OverrideState: 0
+    m_Value: 1
+  threshold:
+    m_OverrideState: 0
+    m_Value: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  scatter:
+    m_OverrideState: 0
+    m_Value: 0.7
+  tint:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  dirtTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+  dirtIntensity:
+    m_OverrideState: 0
+    m_Value: 0
+  anamorphic:
+    m_OverrideState: 0
+    m_Value: 1
+  m_Resolution:
+    m_OverrideState: 0
+    m_Value: 2
+  m_HighQualityPrefiltering:
+    m_OverrideState: 0
+    m_Value: 0
+  m_HighQualityFiltering:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &-3489764554003157690
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -108,7 +154,7 @@ MonoBehaviour:
     m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0.06386613, g: 0.06444252, b: 0.3679245, a: 1}
   maxFogDistance:
     m_OverrideState: 1
     m_Value: 5000
@@ -123,7 +169,7 @@ MonoBehaviour:
     m_Value: 1000
   baseHeight:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 0
   maximumHeight:
     m_OverrideState: 1
     m_Value: 50
@@ -185,6 +231,7 @@ MonoBehaviour:
   - {fileID: -3489764554003157690}
   - {fileID: 1132765629716834075}
   - {fileID: -9183971819438390585}
+  - {fileID: -4213053309300731858}
 --- !u!114 &1132765629716834075
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -200,10 +247,10 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.65251994, z: 0.68559194, w: 0}
+    m_Value: {x: 1, y: 0.86800075, z: 0.9014074, w: 0}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.81700313, y: 0.8445606, z: 1, w: 0}
+    m_Value: {x: 0.7965582, y: 0.78872097, z: 1, w: 0}
   highlights:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0}
