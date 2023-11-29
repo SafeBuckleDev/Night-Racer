@@ -26,9 +26,11 @@ public class controller : MonoBehaviour
     public float[] slip = new float[4];
     private InputManager Im;
     private GameObject centerOfMass;
-    
+
 
     [Header("variables")]
+    public float handBrakeFrinctionMultiplier= 2f;
+    public float handBrakeFrinction= 2.5f;
     public float totalPower;
     public float maxRPM,minRPM;
     public float wheelsRPM;
@@ -37,6 +39,9 @@ public class controller : MonoBehaviour
     public bool reverse;
     public float[]gears;
     public int gearNum;
+
+    private WheelFrictionCurve forwardFriction, sidewaysFriction;
+
 
     public AnimationCurve enginePower;
     public bool AssembleCar;
@@ -64,6 +69,17 @@ public class controller : MonoBehaviour
         getFriction();
         calculateEnginePower();
         Shifter();
+       // checkWheelSpin();
+        if(gameObject.transform.rotation.z >=80)
+        {
+            gameObject.transform.Rotate(0, 0, -80);
+
+        }else if(gameObject.transform.rotation.z <= -70)
+        {
+            gameObject.transform.Rotate(0, 0, 70);
+
+        }
+        
     }
     private void calculateEnginePower()
     {
@@ -143,45 +159,84 @@ public class controller : MonoBehaviour
 
     private void moveVehicle()
     {
-
-        if(drive== driveType.fourWheelDrive)
+        if (Input.GetKey(KeyCode.S))
         {
-            for (int i = 0; i < wheels.Length; i++)
+            if (drive == driveType.fourWheelDrive)
             {
-                wheels[i].motorTorque = Im.vertical*(totalPower/4);
+                for (int i = 0; i < wheels.Length; i++)
+                {
+                    wheels[i].motorTorque = -Im.vertical * (totalPower / 4);
+                }
+
+            }
+            else if (drive == driveType.rearWheelDrive)
+            {
+                for (int i = 2; i < wheels.Length; i++)
+                {
+                    wheels[i].motorTorque = -Im.vertical * (totalPower / 2);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < wheels.Length - 2; i++)
+                {
+                    wheels[i].motorTorque = -Im.vertical * (totalPower / 2);
+                }
             }
 
-        }
-        else if(drive == driveType.rearWheelDrive)
-        {
-            for (int i = 2; i < wheels.Length; i++)
-            {
-                wheels[i].motorTorque = Im.vertical * (totalPower / 2);
-            }
+            KPH = rb.velocity.magnitude * 3.6f;
+
         }
         else
         {
-            for (int i = 0; i < wheels.Length-2; i++)
+
+            if (drive == driveType.fourWheelDrive)
             {
-                wheels[i].motorTorque = Im.vertical * (totalPower / 2);
+                for (int i = 0; i < wheels.Length; i++)
+                {
+                    wheels[i].motorTorque = Im.vertical * (totalPower / 4);
+                }
+
             }
-        }
+            else if (drive == driveType.rearWheelDrive)
+            {
+                for (int i = 2; i < wheels.Length; i++)
+                {
+                    wheels[i].motorTorque = Im.vertical * (totalPower / 2);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < wheels.Length - 2; i++)
+                {
+                    wheels[i].motorTorque = Im.vertical * (totalPower / 2);
+                }
+            }
 
-        KPH = rb.velocity.magnitude * 3.6f;
+            KPH = rb.velocity.magnitude * 3.6f;
 
-        if (Im.handBrake)
-        {
-            wheels[3].brakeTorque = wheels[2].brakeTorque = Brakepower;
-        }
-        else
-        {
-            wheels[3].brakeTorque = wheels[2].brakeTorque = 0;
-        }
+            if (Im.handBrake)
+            {
+                wheels[3].brakeTorque = Brakepower;
+                wheels[2].brakeTorque = Brakepower;
+                wheels[1].brakeTorque = Brakepower;
+                wheels[0].brakeTorque = Brakepower;
 
-        if (Im.boosting)
-        {
-            rb.AddForce(Vector3.forward * thrust);
-            
+                //  adjustTraction();
+            }
+            else
+            {
+                wheels[3].brakeTorque = 0;
+                wheels[2].brakeTorque = 0;
+                wheels[1].brakeTorque = 0;
+                wheels[0].brakeTorque = 0;
+            }
+
+                if (Im.boosting)
+            {
+                rb.AddForce(Vector3.forward * thrust);
+
+            }
         }
         
     }
@@ -219,8 +274,6 @@ public class controller : MonoBehaviour
         }
              
     }
-    
-    
     private void getObjects()
     {
         Im = GetComponent<InputManager>();
@@ -257,6 +310,109 @@ public class controller : MonoBehaviour
 
             slip[i] = wheelHit.forwardSlip;
         }
+    }
+
+    private void adjustTraction()
+    {
+        if (!Im.handBrake)
+        {
+            forwardFriction = wheels[0].forwardFriction;
+            sidewaysFriction = wheels[0].sidewaysFriction;
+
+
+            forwardFriction.extremumValue = forwardFriction.asymptoteValue = ((KPH * handBrakeFrinctionMultiplier) / 300) + 1;
+            sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = ((KPH * handBrakeFrinctionMultiplier) / 300) + 1;
+
+            for(int i =0; i<4; i++)
+            {
+                wheels[i].forwardFriction = forwardFriction;
+                wheels[i].sidewaysFriction = sidewaysFriction;
+            }
+
+        }
+        else if (Im.handBrake)
+        {
+            sidewaysFriction = wheels[0].sidewaysFriction;
+            forwardFriction = wheels[0].forwardFriction;
+
+
+            float velocity = 0;
+            sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue = Mathf.SmoothDamp(sidewaysFriction.asymptoteValue, handBrakeFrinction, ref velocity, 0.05f * Time.deltaTime);
+            forwardFriction.extremumValue = forwardFriction.asymptoteValue = Mathf.SmoothDamp(forwardFriction.asymptoteValue, handBrakeFrinction, ref velocity, 0.05f * Time.deltaTime);
+
+
+            for(int i= 2; i<4; i++)
+            {
+                wheels[i].sidewaysFriction = sidewaysFriction;
+                wheels[i].forwardFriction = forwardFriction;
+            }
+
+        }
+    }
+
+    private float tempo;
+    void checkWheelSpin()
+    {
+        float blind = 0.28f;
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            //
+            rb.AddForce(Vector3.forward * thrust);
+        }
+        if (Im.handBrake)
+        {
+            for(int i = 0; i< 4; i++)
+            {
+                WheelHit wheelHit;
+
+                wheels[i].GetGroundHit(out wheelHit);
+                if(wheelHit.sidewaysSlip> blind || wheelHit.sidewaysSlip < -blind)
+                {
+                    //applyBooster(wheelHit.sidewaysSlip);
+                }
+            }
+            for(int i = 2; i< 4; i++)
+            {
+                WheelHit wheelHit;
+
+                wheels[i].GetGroundHit(out wheelHit);
+
+                if (wheelHit.sidewaysSlip < 0)
+                {
+                    tempo = (1 + -Im.horizontal) + Mathf.Abs(wheelHit.sidewaysSlip * handBrakeFrinctionMultiplier);
+                    if(tempo < 0.5)
+                    {
+                        tempo = 0.5f;
+                    }
+                }
+                if (wheelHit.sidewaysSlip > 0)
+                {
+                    tempo = (1 + -Im.horizontal) + Mathf.Abs(wheelHit.sidewaysSlip * handBrakeFrinctionMultiplier);
+                    if(tempo < 0.5)
+                    {
+                        tempo = 0.5f;
+                    }
+                }
+                if(wheelHit.sidewaysSlip>.99f || wheelHit.sidewaysSlip< -.99f)
+                {
+                    float velocity = 0;
+                    handBrakeFrinction = Mathf.SmoothDamp(handBrakeFrinction, tempo * 3, ref velocity, 0.1f * Time.deltaTime);
+                }
+                else
+                {
+                    handBrakeFrinction = tempo;
+                }
+
+
+            }
+        }
+
+       
+
+
+
+
     }
 
 }
