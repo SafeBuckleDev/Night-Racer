@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public struct RaceData // save info
@@ -24,6 +25,7 @@ public struct GhostWaypoint
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private bool debug;
     public PlayerStates state;
     [HideInInspector]
     public string racerName;
@@ -50,9 +52,15 @@ public class GameManager : MonoBehaviour
     private string path;
     private string persistentPath;
     private List<GhostWaypoint> pWaypoints;
+    [Space]
+    [SerializeField] private GameObject finishPanel;
+    [SerializeField] private TMP_Text lapcounterTxt;
+    private bool canExit;
 
     public void Start()
     {
+        canExit = false;
+
         currentLap = 1;
 
         racerName = PlayerPrefs.GetString("DriverName", name);
@@ -63,6 +71,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(debug == true && Input.GetKeyDown(KeyCode.L))
+        {
+            TriggerLap();
+        }
+
         currentCountdown -= Time.deltaTime;
         countdownText.color = Color.Lerp(startColor, endColor, currentCountdown / textTime);
 
@@ -72,6 +85,11 @@ public class GameManager : MonoBehaviour
         }
 
         DisplayTime(lapTime, timerText);
+
+        if(canExit == true && Input.anyKeyDown)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void DisplayTime(float val, TMP_Text text)
@@ -117,9 +135,34 @@ public class GameManager : MonoBehaviour
             CalTotalRaceTime();
 
             SaveScore(racerName, CalTotalRaceTime());
+
+            StartCoroutine(EndRaceSequence());
         }
 
         StartCoroutine(RecordBestLap());
+    }
+
+    private IEnumerator EndRaceSequence()
+    {
+        finishPanel.SetActive(true);
+
+        lapcounterTxt.text = "LAP TIMES:\n";
+
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < lapTimes.Count; i++)
+        {
+            string lineTekst = "LAP" + (i + 1) + ": " + lapTimes[i].ToString("F2") + "\n";
+            lapcounterTxt.text = lapcounterTxt.text + lineTekst;
+            yield return new WaitForSeconds(1f);
+        }
+
+        lapcounterTxt.text = lapcounterTxt.text + "\n\nTOTAL TIME:";
+        yield return new WaitForSeconds(1.25f);
+        lapcounterTxt.text = lapcounterTxt.text + "\n" + CalTotalRaceTime().ToString("F2");
+        yield return new WaitForSeconds(2.5f);
+        lapcounterTxt.text = lapcounterTxt.text + "\n\nPRESS ANY KEY TO CONTINUE";
+        canExit = true;
     }
 
     private IEnumerator RecordBestLap()
