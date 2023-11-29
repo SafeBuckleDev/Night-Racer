@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class monsterTree : MonoBehaviour
 {
-    [SerializeField] private GameObject[] waypoints;
+    [SerializeField] private GameObject[] locations;
 
 
     public Animator monsterTreeAnim;
 
-    private int currentwaypointindex;
+    private int currentLOC;
 
     [SerializeField] private float speed;
     void Update()
     {
-        if (Vector3.Distance(waypoints[currentwaypointindex].transform.position, transform.position) < .2f)
+        if (Vector3.Distance(locations[currentLOC].transform.position, transform.position) < .2f)
         {
-            currentwaypointindex++;
-            if (currentwaypointindex >= waypoints.Length)
+            currentLOC++;
+            if (currentLOC >= locations.Length)
             {
-                currentwaypointindex = 0;
+                currentLOC = 0;
             }
 
         }
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[currentwaypointindex].transform.position, Time.deltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, locations[currentLOC].transform.position, Time.deltaTime * speed);
         //monsterTreeAnim.SetBool("walking", true);
     }
 }
