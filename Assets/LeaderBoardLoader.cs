@@ -34,10 +34,10 @@ public class LeaderBoardLoader : MonoBehaviour
             saves.Add(data);
         }
 
-        sortSaveFiles();
+        StartCoroutine(sortSaveFiles());
     }
 
-    public void sortSaveFiles()
+    public IEnumerator sortSaveFiles()
     {
         foreach (RaceData d in saves)
         {
@@ -57,14 +57,15 @@ public class LeaderBoardLoader : MonoBehaviour
             }
         }
 
-        sortedSaves.Reverse();
-
-        foreach (RaceData d in sortedSaves)
+        for (int i = 0; i < sortedSaves.Count; i++)
         {
+            yield return new WaitForSeconds(.1f);
             GameObject txtObj = leaderBoardListTxtPrefab;
+            txtObj.name = "entry" + i;
+            Debug.Log("NAME:" + sortedSaves[i].name + " TIME:" + sortedSaves[i].raceTime);
 
+            txtObj.GetComponent<TMP_Text>().text = "NAME:" + sortedSaves[i].name + " TIME:" + sortedSaves[i].raceTime;
             Instantiate(txtObj, listParent.transform);
-            leaderBoardListTxtPrefab.GetComponent<TMP_Text>().text = "NAME:" + d.name + " TIME:" + d.raceTime;
         }
     }
 }

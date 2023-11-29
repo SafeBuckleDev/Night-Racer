@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221392ad85caeaa4389088959626ad29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gearChange: 0
-  drive: 0
+  gearChange: 1
+  drive: 1
   carManager: {fileID: 0}
   wheelMeshes: {fileID: 0}
   wheelColliders: {fileID: 0}
@@ -240,7 +240,7 @@ MonoBehaviour:
   radius: 30
   addDownForceValue: 50
   Brakepower: 475
-  steeringMax: 25
+  steeringMax: 10
 --- !u!114 &1388569307349100316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,7 +400,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_Enabled: 1
 --- !u!1 &1388569308100328477
 GameObject:
@@ -493,7 +493,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_Enabled: 1
 --- !u!1 &1388569308281291555
 GameObject:
@@ -555,7 +555,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_Enabled: 1
 --- !u!1 &1388569308530301329
 GameObject:
@@ -822,7 +822,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_Enabled: 1
 --- !u!1 &1388569309048628813
 GameObject:
@@ -848,7 +848,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388569309048628813}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.010000229, y: -0.126, z: -0.1930008}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
